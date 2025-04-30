@@ -1,0 +1,245 @@
+/* Start Variables */
+:root {
+    --main-color: #111727;
+    --secondary-color: #1b243a;
+    --in-place: #f29908;
+    --not-in-place: #11b882;
+    --wrong-letter: #f44336;
+}
+/* End Variables */
+
+/* Start Global Rules */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+
+body {
+    margin: 0;
+    color: white;
+    background-color: var(--main-color);
+    font-family: Arial, Helvetica, sans-serif;
+}
+.guess-game {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Small Screens */
+@media (min-width: 768px) {
+    .guess-game {
+        width: 750px;
+    }
+}
+
+/* Medium Screens */
+@media (min-width: 992px) {
+    .guess-game {
+        width: 970px;
+    }
+}
+
+/* Large Screens */
+@media (min-width: 1200px) {
+    .guess-game {
+        width: 1170px;
+    }
+}
+
+/* End Global Rules */
+
+h1 {
+    text-align: center;
+    padding: 20px;
+    margin: 0 0 50px;
+    background-color: var(--secondary-color);
+}
+.guess-game {
+    text-align: center;
+    /* width: 1000px; */
+    /* margin: 20px auto; */
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    .game-area {
+        .inputs {
+            > div {
+                margin-bottom: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                span {
+                    font-size: 30px;
+                    margin-right: 15px;
+                    font-weight: bold;
+                }
+            }
+            .disabled-try {
+                opacity: 0.6;
+                pointer-events: none;
+            }
+            input {
+                margin: 0 5px;
+                width: 60px;
+                height: 60px;
+                text-align: center;
+                font-size: 50px;
+                color: white;
+                caret-color: white;
+                background-color: var(--secondary-color);
+                border: none;
+                border-bottom: 3px solid white;
+                border-radius: 3px;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                -ms-border-radius: 3px;
+                -o-border-radius: 3px;
+                &:focus {
+                    outline: none;
+                }
+                &.in-place {
+                    background-color: var(--in-place);
+                    border: var(--in-place);
+                }
+                &.not-in-place {
+                    background-color: var(--not-in-place);
+                    border: var(--not-in-place);
+                }
+                &.wrong-letter {
+                    background-color: var(--wrong-letter);
+                    border: var(--wrong-letter);
+                }
+            }
+        }
+        .control {
+            display: flex;
+            justify-content: center;
+            width: 500;
+            margin: 30px auto;
+            gap: 10px;
+            .check {
+                background-color: var(--not-in-place);
+                flex: 1;
+            }
+            .hint {
+                background-color: var(--in-place);
+                width: fit-content;
+            }
+            button {
+                border: none;
+                font-size: 25px;
+                padding: 15px 20px;
+                color: white;
+                cursor: pointer;
+                font-weight: bold;
+                border-radius: 6px;
+                -webkit-border-radius: 6px;
+                -moz-border-radius: 6px;
+                -ms-border-radius: 6px;
+                -o-border-radius: 6px;
+            }
+            button:disabled {
+                opacity: 0.5;
+                cursor: no-drop;
+            }
+        }
+    }
+    .key-colors {
+        h2 {
+            margin-bottom: 10px;
+        }
+        .key-color {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: var(--secondary-color);
+            margin-bottom: 10px;
+            border-radius: 6px;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            -ms-border-radius: 6px;
+            -o-border-radius: 6px;
+            .key {
+                width: 30px;
+                height: 30px;
+                margin-right: 10px;
+                border-radius: 50%;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                -ms-border-radius: 50%;
+                -o-border-radius: 50%;
+                &.in-place {
+                    background-color: var(--in-place);
+                }
+                &.not-in-place {
+                    background-color: var(--not-in-place);
+                }
+                &.wrong-letter {
+                    background-color: var(--wrong-letter);
+                }
+            }
+            .key-text {
+                font-size: 20px;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1b243a;
+}
+
+@media (max-width: 991px) {
+    .guess-game {
+        flex-direction: column;
+        align-items: center;
+        .key-colors {
+            .key-color{
+                .key {
+                    width: 20px;
+                    height: 20px;
+                }
+                .key-text {
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+    h1 {
+        font-size: 25px;
+    }
+    footer {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    .guess-game {
+        .game-area {
+            .inputs {
+                span {
+                    display: none;
+                }
+                input {
+                    font-size: 35px;
+                    width: 45px;
+                    height: 45px;
+                }
+            }
+        }
+        .key-colors {
+            margin-bottom: 80px;
+        }
+    }
+}
