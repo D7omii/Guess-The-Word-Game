@@ -80,24 +80,28 @@ function generateInputs() {
             if (event.key === "Enter") {
                 checkGuess();
             }
-            if (event.key === "Backspace") {
-                // const enabledInputs = document.querySelectorAll("input:not([disabled])");
-                // const currentEnabledIndex = Array.from(inputs).indexOf(document.activeElement);
-                // console.log(inputs[currentIndex].value);
-                if (inputs[currentIndex].value !== ""){
-                    inputs[currentIndex].value = "";
-                    // inputs[currentIndex].focus();
-                } else {
-                    const prevInput = currentIndex - 1;
-                    if (prevInput >= 0) {
-                        inputs[prevInput].value = "";
-                        inputs[prevInput].focus();
-                    }
-                }
-            }
         });
     });
 }
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Backspace") {
+        const enabledInputs = document.querySelectorAll("input:not([disabled])");
+        const currentEnabledIndex = Array.from(enabledInputs).indexOf(document.activeElement);
+        // console.log(enabledInputs);
+        // console.log(currentEnabledIndex);
+        // console.log(inputs[currentIndex].value);
+        if (enabledInputs[currentEnabledIndex].value !== ""){
+            enabledInputs[currentEnabledIndex].value = "";
+            // inputs[currentIndex].focus();
+        } else {
+            const prevInput = currentEnabledIndex - 1;
+            if (prevInput >= 0) {
+                enabledInputs[prevInput].value = "";
+                enabledInputs[prevInput].focus();
+            }
+        }
+    }
+});
 
 const guessButton = document.querySelector(".check");
 guessButton.addEventListener("click", checkGuess);
