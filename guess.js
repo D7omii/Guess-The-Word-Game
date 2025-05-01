@@ -73,10 +73,21 @@ function generateInputs() {
             if (event.key === "Enter") {
                 checkGuess();
             }
-            // if (event.key === "Backspace") {
-            //     const prevInput = currentIndex - 1;
-            //     if (prevInput >= 0) inputs[prevInput].focus();
-            // }
+            if (event.key === "Backspace") {
+                // const enabledInputs = document.querySelectorAll("input:not([disabled])");
+                // const currentEnabledIndex = Array.from(inputs).indexOf(document.activeElement);
+                // console.log(inputs[currentIndex].value);
+                if (inputs[currentIndex].value !== ""){
+                    inputs[currentIndex].value = "";
+                    // inputs[currentIndex].focus();
+                } else {
+                    const prevInput = currentIndex - 1;
+                    if (prevInput >= 0) {
+                        inputs[prevInput].value = "";
+                        inputs[prevInput].focus();
+                    }
+                }
+            }
         });
     });
 }
@@ -105,7 +116,7 @@ function checkGuess () {
     }
     // Check if user win or lose
     if (successGuess) {
-        messageArea.innerHTML = `<div class="box"><div class="congrat">Congratulations</div><span>🎉🎉🎉</span><div><button class="ok">OK</button><button class="retray">Retray</button></div></div>`;
+        messageArea.innerHTML = `<div class="box"><div class="congrat">Congratulations</div><span>🎉🎉🎉</span><div><button class="ok">OK</button><button class="retray">Play</button></div></div>`;
         // Disable all inputs
         let allTries = document.querySelectorAll(".inputs > div");
         allTries.forEach((tryDiv) => tryDiv.classList.add("disabled-try"));
@@ -131,7 +142,7 @@ function checkGuess () {
         } else {
             guessButton.disabled = true;
             hintButton.disabled = true;
-            messageArea.innerHTML = `<div class="box"><div class="wrong">Wrong Answer</div><span>The word is: <span>${wordToGuess}</span></span><div><button class="ok">OK</button><button class="retray">Retray</button></div></div>`;
+            messageArea.innerHTML = `<div class="box"><div class="wrong">Wrong Answer</div><span>The word is: <span>${wordToGuess}</span></span><div><button class="ok">OK</button><button class="retray">Play</button></div></div>`;
             messageArea.style.display = "block";
             endGame = true;
         }
@@ -159,7 +170,7 @@ function getHint() {
     document.querySelector(`#try-${currentTry}-letter-${index + 1}`).classList.add("in-place");
     currentTryInputs[index].disabled = true;
     wordArray[index] = true;
-    if (index < numberOfLetters - 1) currentTryInputs[index + 1].focus();
+    // if (index < numberOfLetters - 1) currentTryInputs[index + 1].focus();
     if (wordArray.indexOf(false) === -1) {
         hintButton.disabled = true;
     }

@@ -254,11 +254,11 @@ h1 {
             -o-border-radius: 6px;
         }
         .retray {
-            background-color: var(--in-place);
+            background-color: var(--not-in-place);
         }
         .ok {
             margin-right: 30px;
-            background-color: var(--not-in-place);
+            background-color: var(--secondary-color);
         }
 }
     p {
