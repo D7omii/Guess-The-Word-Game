@@ -55,7 +55,14 @@ function generateInputs() {
             // Convert letters to Uppercase
             this.value = this.value.toUpperCase();
             // focus on the next input
-            const nextInput = inputs[index + 1];
+            let nextInput = inputs[index + 1];
+            // console.log(nextInput.disabled);
+            while (nextInput.disabled) {
+                ++index;
+                nextInput = inputs[index + 1];
+                // console.log(nextInput);
+                if (index % 6 === 0) break;
+            }
             if (nextInput) nextInput.focus();
         });
         // 
